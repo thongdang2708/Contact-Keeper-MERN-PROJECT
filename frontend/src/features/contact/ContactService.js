@@ -5,6 +5,8 @@ import axios from "axios";
 const API_URL = "/api/contacts/";
 
 
+//Create contact
+
 const createContact = async (inputData, token) => {
 
     let config = {
@@ -17,6 +19,8 @@ const createContact = async (inputData, token) => {
 
     return response.data;
 };
+
+//Display contacts
 
 const getAllContacts = async (token) => {
 
@@ -31,6 +35,8 @@ const getAllContacts = async (token) => {
     return response.data;
 };
 
+//Display single contact
+
 const getSingleContact = async (id, token) => {
 
     let config = {
@@ -44,6 +50,8 @@ const getSingleContact = async (id, token) => {
     return response.data;
 };
 
+//Update contact
+
 const updateContact = async (text, id, token) => {
     
     let config = {
@@ -56,6 +64,9 @@ const updateContact = async (text, id, token) => {
 
     return response.data;
 };
+
+
+//Delete contact
 
 const deleteContact = async (id, token) => {
 

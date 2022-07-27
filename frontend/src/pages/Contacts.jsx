@@ -17,6 +17,8 @@ import { displayContact } from '../features/contact/ContactSlice';
 import { resetSingle } from '../features/contact/ContactSlice';
 import { getEditItem } from '../features/contact/ContactSlice';
 import { updateForContact } from '../features/contact/ContactSlice';
+
+//Set style for Modal
 const customStyles = {
     content: {
         position: "relative",
@@ -30,36 +32,74 @@ const customStyles = {
     }
 };
 
+//Set up modal
+
 Modal.setAppElement("#root");
 
 function Contacts() {
 
+
+    //Set state and function for text search
     let [text, setText] = useState("");
-    let {contacts, contact, itemEdit, isError, isLoading, isSuccess, message} = useSelector(state => state.contact);
-    let dispatch = useDispatch();
-    let [modalOpen, setModalOpen] = useState(false);
-    let [contactId, setContactId] = useState("");
-    let [editData, setEditData] = useState({
-        nameEdit: "",
-        emailEdit: "",
-        phoneEdit: "",
-        titleEdit: "",
-    });
-    
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => {
-        setModalOpen(false);
-    };
+
     const handleChange = (e) => {
         e.preventDefault();
 
         setText(e.target.value.trim().toLowerCase());
     }
 
+    //Global state for contact
+    let {contacts, contact, itemEdit, isError, isLoading, isSuccess, message} = useSelector(state => state.contact);
+
+    //Set dispatch
+    let dispatch = useDispatch();
+
+
+    
+
+    //Set state for item to edit in edit modal
+    let [editData, setEditData] = useState({
+        nameEdit: "",
+        emailEdit: "",
+        phoneEdit: "",
+        titleEdit: "",
+    });
+
+    //Set state and function to open and close modal
+
+    let [modalOpen, setModalOpen] = useState(false);
+    
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+    
+
+    //Set State for contact ID to update
+    let [contactId, setContactId] = useState("");
+
+    //Function to get update ID
+
     const updateId = (id) => {
         setContactId(id);
         dispatch(getEditItem(id));
     };
+
+
+     //Set effect to display edit item information in edit modal
+
+     useEffect(() => {
+        if (itemEdit.edit === true) {
+            setEditData({
+                nameEdit: itemEdit.item.name,
+                emailEdit: itemEdit.item.email,
+                phoneEdit: itemEdit.item.phone,
+                titleEdit: itemEdit.item.title
+            })
+        }
+    },[itemEdit]);
+
+    //Function to handle changes of edit modal
 
     const handleChangeModal = (et) => {
         let {name, value} = et.target;
@@ -70,6 +110,8 @@ function Contacts() {
         }))
 
     };
+
+    //Function to submit to edit item
 
     const handleSubmit = (ey) => {
         ey.preventDefault();
@@ -88,17 +130,7 @@ function Contacts() {
         closeModal();
     }
 
-    useEffect(() => {
-        if (itemEdit.edit === true) {
-            setEditData({
-                nameEdit: itemEdit.item.name,
-                emailEdit: itemEdit.item.email,
-                phoneEdit: itemEdit.item.phone,
-                titleEdit: itemEdit.item.title
-            })
-        }
-    },[itemEdit])
-   
+   //Set effect to display contacts
     
 
     useEffect(() => {
@@ -117,6 +149,8 @@ function Contacts() {
         dispatch(displayContacts());
 
     },[])
+
+    //Function to filter contact
 
     let filterContacts = contacts.filter((contact) => {
         if (text === "") {

@@ -11,15 +11,21 @@ import {toast} from "react-toastify";
 
 function Login() {
 
+    //Set state for data in log-in form
     let [formData, setFormData] = useState({
         "email": "",
         "password": ""
     });
 
+    //Set navigate and dispatch
     let navigate = useNavigate();
     let dispatch = useDispatch();
+
+    //Global state for user
     let {user, isError, isSuccess, message, isLoading} = useSelector(state => state.auth);
 
+
+    //Set effect to direct routes
     useEffect(() => {
 
         if (isError) {
@@ -33,6 +39,7 @@ function Login() {
         dispatch(resetForLogin());
     },[isError, message, isSuccess, user, dispatch, navigate]);
 
+    //Set changes for data in form
 
     const handleChange = (e) => {
 
@@ -43,6 +50,8 @@ function Login() {
             [name]: value
         }))
     };
+
+    //Submit to login
 
     const handleSubmit = (et) => {
 

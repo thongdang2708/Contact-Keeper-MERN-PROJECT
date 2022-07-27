@@ -15,7 +15,8 @@ function SingleContact({contact, openModal, closeModal, getId}) {
         openModal();
         getId(id);
     };
-
+    
+    //Function to delete contact
     const deleteContact = (id) => {
         dispatch(deleteForContact(id));
     };

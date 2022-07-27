@@ -14,11 +14,16 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
 
+    //Global state for user
     let {user, isLoading, isError, isSuccess, message} = useSelector(state => state.auth);
 
+
+    //Set dispatch and navigate
     let dispatch = useDispatch();
 
     let navigate = useNavigate();
+
+    //Set effect for direct route for register form
 
     useEffect(() => {
         if (isError) {
@@ -32,12 +37,16 @@ function Register() {
         dispatch(resetForAll());
     }, [isSuccess, isError, message, navigate, dispatch, user]);
 
+    //Set state for data in form
+
     let [formData, setFormData] = useState({
         "name": "",
         "email": "",
         "password": "",
         "password2": ""
     });
+
+    //Set changes for data in form
 
     const handleChange = (e) => {
         
@@ -49,6 +58,7 @@ function Register() {
         }))
     };
 
+    //Submit to register
 
     const handleSubmit = (et) => {
         et.preventDefault();

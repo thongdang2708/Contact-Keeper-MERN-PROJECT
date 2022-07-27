@@ -15,6 +15,8 @@ const initialState = {
     message: ""
 };
 
+
+//Add contact
 export const addContact = createAsyncThunk("/contact/addContact",
         async (user, thunkAPI) => {
             try {
@@ -34,6 +36,8 @@ export const addContact = createAsyncThunk("/contact/addContact",
         } 
 );
 
+//Display all contacts
+
 export const displayContacts = createAsyncThunk("/contact/displayContacts",
         async (user, thunkAPI) => {
             try {
@@ -48,6 +52,8 @@ export const displayContacts = createAsyncThunk("/contact/displayContacts",
             }
         }
 );
+
+//Display single contact
 
 export const displayContact = createAsyncThunk("/contact/displayContact", 
         async (user, thunkAPI) => {
@@ -67,6 +73,8 @@ export const displayContact = createAsyncThunk("/contact/displayContact",
         }
 );
 
+//Function to choose contact to edit
+
 export const getEditItem = createAsyncThunk("/contact/getEditContact",
 async (user, thunkAPI) => {
     try {
@@ -85,6 +93,9 @@ async (user, thunkAPI) => {
 }
 );
 
+//Update contact
+
+
 export const updateForContact = createAsyncThunk("/contact/updateContact",
         async (user, thunkAPI) => {
 
@@ -100,6 +111,8 @@ export const updateForContact = createAsyncThunk("/contact/updateContact",
            }
         }
 );
+
+//Delete contact
 
 export const deleteForContact = createAsyncThunk("/contact/deleteContact",
         async (user, thunkAPI) => {

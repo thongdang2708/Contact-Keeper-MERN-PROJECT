@@ -12,18 +12,27 @@ import { addContact } from '../features/contact/ContactSlice';
 
 function Home() {
 
+    //Set state for data in form
     let [formData, setFormData] = useState({
         "name": "",
         "email": "",
         "phone": "",
         "title": "Personal"
     });
+
+    //Set state for navigate
     let navigate = useNavigate();
+
+    //Global State for Contact
     let {isError, isSuccess, isLoading, message} = useSelector(state => state.contact);
+
+    //Global State for User
     let {user} = useSelector(state => state.auth);
+
+    //Set dispatch
     let dispatch = useDispatch();
 
-
+    //Set effect for form to direct route
     useEffect(() => {
         if (isError) {
             toast.error(message);
@@ -37,7 +46,7 @@ function Home() {
     },[isError, message, isSuccess, navigate, dispatch]);
     
 
-
+    //Set changes for data in form
 
     const handleChange = (e) => {
         let {name, value} = e.target;
@@ -47,6 +56,8 @@ function Home() {
             [name]: value
         }))
     };
+
+    //Submit to add add contact
 
     const handleSubmit = (et) => {
         et.preventDefault();

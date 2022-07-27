@@ -4,6 +4,8 @@ import axios from "axios";
 
 const API_URL = "/api/users/";
 
+
+//Function to register
 const register = async (inputData) => {
 
     let response = await axios.post(API_URL, inputData);
@@ -11,6 +13,7 @@ const register = async (inputData) => {
     return response.data;
 };
 
+//Function to log in
 const login = async (inputData) => {
 
     let response = await axios.post(API_URL + "login", inputData);
@@ -22,6 +25,7 @@ const login = async (inputData) => {
     return response.data;
 };
 
+//Function to log out
 const logOut = () => localStorage.removeItem("user");
 
 const AuthService = {
