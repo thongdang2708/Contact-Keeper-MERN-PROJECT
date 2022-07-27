@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.status-Personal {
+    color: lightcoral;
+    padding: 2px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.status-Professional {
+    color: lightblue;
+    padding: 2px;
+    border-radius: 20px;
+    font-weight: bold;
+}
